@@ -1,0 +1,41 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+ 	<mvc:annotation-driven/>
+	<context:component-scan base-package="org.campanha.controller" />
+
+	<bean id="campanhaRepository"
+		class="com.campanha.repository.CampanhaRepositoryImpl">
+		<property name="mongoTemplate" ref="mongoTemplate" />
+	</bean>
+
+	<bean id="clienteRepository"
+		class="com.campanha.repository.ClienteRepositoryImpl">
+		<property name="mongoTemplate" ref="mongoTemplate" />
+	</bean>
+	
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongo" ref="mongo" />
+		<constructor-arg name="databaseName" value="campanhadb" />
+	</bean>
+
+	<!-- Factory bean that creates the Mongo instance -->
+	<bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+		<property name="host" value="localhost" />
+		<property name="port" value="27017" />
+	</bean>
+
+	<!-- Activate annotation configured components -->
+	<context:annotation-config />
+
+	<!-- Scan components for annotations within the configured package -->
+	<context:component-scan base-package="com.campanha">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.context.annotation.Configuration" />
+	</context:component-scan>
+</beans>
+
