@@ -17,5 +17,5 @@ Steps:
 - Spring MVC
 - Spring Data
 - Design pattern : Repository
-- MongoDB
+- Mongo DB
 - JUnit + RestAssured
