@@ -85,7 +85,7 @@
 
 	</build>
 	<properties>
-		<spring.version>4.2.1.RELEASE</spring.version>
+		<spring.version>5.3.18</spring.version>
 
 		<org.springframework.data.version>1.10.4.RELEASE</org.springframework.data.version>
 		<rest-assured.version>2.9.0</rest-assured.version>
